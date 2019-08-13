@@ -1,0 +1,106 @@
+//this is the class that can be used for a math operations on complex numbers
+//he has a good description for any method and will be very friendly for a most of projects
+public class ComplexNum
+{
+    //RE is a real part of the complex number, can be used like double p=x.RE;
+    //IM is an immersive part of the complex number, can be used like double q=x.IM;
+    //where x is a ComplexNum object
+    double RE,IM;
+
+    //MOD method returns module of the complex number and calls like x.MOD(ComplexNum s)
+    //or for x like a x.MOD(x) and can be use for example ''double a=x.MOD(x);''
+    public double MOD(ComplexNum z)
+    {
+        return Math.pow(Math.pow(z.IM,2)+Math.pow(z.RE,2),0.5);
+    }
+
+    //it is an ariphmethic form translator that can be print in string format
+    //and also can be saved in string type operand like
+    //String St=x.AFORMPRINT(ComplexNum x); (or something ComplexNum type)
+    //where x is a initialised ComplexNum object
+    public String AFORMPRINT(ComplexNum z)
+    {
+        String S;
+        S=(z.RE+"+i"+z.IM);
+        return S;
+    }
+
+    //
+    public ComplexNum AFORMSCAN(String S)
+    {
+        ComplexNum z = new ComplexNum();
+        ////////////////////////-------
+        return z;
+    }
+
+    //it is an exponential form printing method of the complex numbers that return
+    //String data about our complex number that is an initialised ComplexNum type object
+    public String EFORMPRINT (ComplexNum z)
+    {
+        String S;
+        S=(z.MOD(z)+"e^i"+Math.atan(z.IM/z.RE)/Math.PI*180); //e^(i*DEG)
+        return S;
+    }
+
+    //it is a method that can sum 2 complex numbers which was initialised like
+    //ComplexNum objects in 1 ComplexNum object
+    //it can be used like Z=Z.SUM(Z1,Z2);
+    //(if we have a Z,Z1,Z2 initialised objects ComplexNum type)
+    public ComplexNum SUM(ComplexNum z1,ComplexNum z2)
+    {
+        ComplexNum z=new ComplexNum();
+        z.RE=z1.RE+z2.RE;
+        z.IM=z1.IM+z2.IM;
+        return z;
+    }
+
+    //this method multiplying 2 ComplexNum complex numbers and return ComplexNum type
+    public ComplexNum MUL(ComplexNum z1, ComplexNum z2)
+    {
+        ComplexNum z=new ComplexNum();
+        z.RE=z1.RE*z2.RE-z1.IM*z2.IM;
+        z.IM=z1.IM*z2.RE+z1.RE*z2.IM;
+        return z;
+    }
+
+    //this method deviding 2 ComplexNum complex numbers first on second
+    //and return ComplexNum type value
+    public ComplexNum DEV(ComplexNum z1, ComplexNum z2)
+    {
+        ComplexNum z=new ComplexNum();
+        z.RE=z1.RE*z2.RE+z1.IM*z2.IM;
+        z.IM=z1.IM*z2.RE-z1.RE*z2.IM;
+        z.RE=z.RE/(z2.RE*z2.RE+z2.IM*z2.IM);
+        z.IM=z.IM/(z2.RE*z2.RE+z2.IM*z2.IM);
+        return z;
+    }
+
+    ///////this main part is only for testing, if you use this class in your project,
+    ///////please, delete this main method
+    public static void main(String args[])
+    {
+        ComplexNum Z=new ComplexNum();
+        ComplexNum Z1=new ComplexNum();
+        ComplexNum Z2=new ComplexNum();
+        Z.RE=3;
+        Z.IM=4;
+        Z1.RE=1;
+        Z1.IM=1;
+        Z2.RE=2;
+        Z2.IM=2;
+        String S;
+        S=Z.AFORMPRINT(Z);
+        System.out.println(S);
+        System.out.println(Z.MOD(Z));
+        S=Z.EFORMPRINT(Z);
+        System.out.println(S);
+        S=Z1.AFORMPRINT(Z1.SUM(Z1,Z2));
+        System.out.println(S);
+        S=Z1.AFORMPRINT(Z1.MUL(Z1,Z2));
+        System.out.println(S);
+        S=Z1.EFORMPRINT(Z1.MUL(Z1,Z2));
+        System.out.println(S);
+        S=Z1.EFORMPRINT(Z1.DEV(Z2,Z1));
+        System.out.println(S);
+    }
+}
